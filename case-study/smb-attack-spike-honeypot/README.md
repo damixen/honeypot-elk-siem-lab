@@ -66,7 +66,7 @@ The table below shows the top source IP addresses of attacks, including 113.160.
 ![top-ips](./screenshots/top-ips.png)
 
 And the top IP address targets only port 445.
-![attack-port-by-ip](./screenshots/attack-port-stats-by-IP.png)
+![attack-port-by-ip](./screenshots/attack-port-stats-by-ip.png)
 
 The ASN correlation indicates that the attack originates from VNPT Corp, Vietnam Posts and Telecommunications Group, a Vietnamese ISP.
 ![asn-stats-by-ip](./screenshots/asn-stats-by-ip.png)
