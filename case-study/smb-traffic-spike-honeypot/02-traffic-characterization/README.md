@@ -10,7 +10,7 @@ The table below shows the top source IP addresses of activities with 113.160.xxx
 ![top-ips](./screenshots/top-ips.png)
 
 And the top IP address targets only port 445.
-![activity-port-by-ip](./screenshots/activity-port-stats-by-IP.png)
+![activity-port-by-ip](./screenshots/activity-port-stats-by-ip.png)
 
 The ASN correlation indicates that the activity originates from VNPT Corp, Vietnam Posts and Telecommunications Group, a Vietnamese ISP.
 ![asn-stats-by-ip](./screenshots/asn-stats-by-ip.png)
