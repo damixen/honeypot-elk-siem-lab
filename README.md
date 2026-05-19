@@ -1,9 +1,9 @@
 # Security Monitoring & Detection with T-pot Honeypot Platform on Digital Ocean
 # Project Overview
-Deployed and operated a cloud-based T-Pot honeypot environment on DigitalOcean to capture real-world attack traffic and analyze adversary behavior. Built an end-to-end security monitoring pipeline using the ELK stack and Metricbeat to collect, process, and visualize security telemetry.
+Deployed and operated a cloud-based T-Pot honeypot environment on DigitalOcean to capture real-world network activities and analyze the behavior. Built an end-to-end security monitoring pipeline using the ELK stack and Metricbeat to collect, process, and visualize security telemetry.
 
 
-This project simulates a lightweight SOC environment focused on log ingestion, attack observation, and behavioral analysis of internet-scale scanning and exploitation attempts.
+This project simulates a lightweight SOC environment focused on log ingestion, activity observation, and behavioral analysis of internet-scale scanning and exploitation attempts.
 
 
 This is a live honeypot environment currently collecting security telemetry
@@ -13,8 +13,8 @@ This is a live honeypot environment currently collecting security telemetry
 - Build a hands-on SIEM environment using the ELK stack
   - Log ingestion pipeline design
   - Kibana-based security visualization
-- Deploy and operate a honeypot system for attack observation
-- Analyze adversary behavior patterns including:
+- Deploy and operate a honeypot system for activity observation
+- Analyze activity behavior patterns including:
   - Network scanning
   - Brute-force authentication attempts
   - Exploitation attempts
