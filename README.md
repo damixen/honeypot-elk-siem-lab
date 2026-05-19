@@ -2,8 +2,7 @@
 # Project Overview
 Deployed and operated a cloud-based T-Pot honeypot environment on DigitalOcean to capture real-world network activities and analyze the behavior. Built an end-to-end security monitoring pipeline using the ELK stack and Metricbeat to collect, process, and visualize security telemetry.
 
-
-This project simulates a lightweight SOC environment focused on log ingestion, activity observation, and behavioral analysis of internet-scale scanning and exploitation attempts.
+This project simulates a lightweight SOC-style monitoring environment focused on log ingestion, activity observation, and behavioral analysis of internet-scale scanning and exploitation attempts.
 
 
 This is a live honeypot environment currently collecting security telemetry
@@ -22,6 +21,16 @@ This is a live honeypot environment currently collecting security telemetry
   - Log correlation
   - Security monitoring
   - Anomaly detection
+
+# Report Framing and Terminology
+Some screenshots retain original T-Pot / Kibana labeling where “attack” is used as a generic field for observed network activity. In this report, these events are interpreted as “activity” (e.g., scans and probes) rather than confirmed malicious attacks or attribution of intent.
+
+# System Context (T-Pot Honeypot Platform)
+T-Pot is an open-source honeypot platform that supports the deployment and management of multiple honeypots. It's a Docker-based service that manages honeypots and also provides an ELK stack for log collection and visualization. It also supports attack maps and investigative tools such as CyberChef and SpiderFoot.
+
+Honeypots on T-Pot emulate various services with open ports, including HTTP, HTTPS, SSH, FTP, SMB, ADB, and Elasticsearch. The platform is highly customizable and supports selective deployment of honeypot services. Each honeypot generates logs for an activity event, which are collected by Logstash and ingested into Elasticsearch.
+
+For my projects, I extended the ELK stack to support Metricbeat to collect System and Docker resources for broader activity correlation. I utilize the existing Kibana visualizations (Dashboards and panels) provided by T-Pot, and I have also created my own visualizations for resource utilization and case study investigation.
 
 
 # Technologies Used
@@ -71,7 +80,6 @@ flowchart LR
     analyst["Sec Analyst"] --> |restricted ports|kibana
 ```
 
-
 # Data Flow
 - Internet traffic interacts with exposed honeypot services
 - Honeypots capture malicious interaction attempts and generate logs
@@ -80,7 +88,6 @@ flowchart LR
 - Elasticsearch stores normalized security data
 - Kibana provides visualization and analysis dashboards for investigation
 - Analysts interact with the Kibana through restricted access utilizing Digital Ocean filewall.
-
 
 # Current Status
 - Honeypot environment is actively collecting live traffic
@@ -95,7 +102,6 @@ flowchart LR
 - Detection rule creation for suspicious activity
 
 ## Acknowledgements
-
 This project utilizes T-Pot honeypot platform as the core honeypot framework for generating and capturing malicious traffic.
 
 Official project: https://github.com/telekom-security/tpotce
