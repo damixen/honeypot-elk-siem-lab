@@ -101,7 +101,7 @@ flowchart LR
 - MITRE ATT&CK mapping of observed behaviors
 - Detection rule creation for suspicious activity
 
-## Acknowledgements
+# Acknowledgements
 This project utilizes T-Pot honeypot platform as the core honeypot framework for generating and capturing malicious traffic.
 
 Official project: https://github.com/telekom-security/tpotce
