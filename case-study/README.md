@@ -21,7 +21,7 @@ Each case study may include:
 - correlation with system or container metrics (Metricbeat)
 - classification of scanning, brute-force, or exploitation patterns
 
-All events are interpreted as observed network activity and telemetry signals rather than confirmed malicious attribution.
+All events are treated as observed network telemetry and are not attributed to confirmed adversary activity.
 
 ## Analysis Environment Context
 
@@ -56,7 +56,7 @@ Case studies generally follow this workflow:
 - Linux (Ubuntu)
 - Snapshot-based Elasticsearch workflows
 
-## Notes on Interpretation
+## Telemetry Interpretation Context
 
 All recorded events represent:
 
