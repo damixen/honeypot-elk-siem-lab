@@ -22,7 +22,7 @@ This separation reduces risk to production telemetry while enabling unrestricted
 flowchart LR
     subgraph internal-service["Monitoring Stack"]
         logstash["Logstash"]
-        elastic["Elastic"]
+        elastic["Elasticsearch"]
         kibana["Kibana Dashboard"]
         metricbeat["Metricbeat"]
     end
@@ -35,20 +35,23 @@ flowchart LR
     end
     subgraph ubuntu["Ubuntu"]
         docker
+        backup
     end
-    subgraph Cloud["Digital Ocean with Firewall"]
+    subgraph Cloud["Production Data Collection Environment - Digital Ocean with Firewall"]
         ubuntu
     end
-     subgraph backup["Snapshot & Transfer"]
+    subgraph backup["Snapshot"]
         snapshot["Elasticsearch Snapshots"]
-        rsync["Rsync Transfer"]
-        snapshot --> rsync
+    end
+    subgraph backup_local["Snapshot"]
+        snapshot_local["Elasticsearch Snapshots"]
     end
     subgraph local["Local Investigation Environment"]
         subgraph ubuntu2["Ubuntu Host"]
+            backup_local
             subgraph docker2["Docker"]
-                elastic_local["Elasticsearch Restore"]
-                kibana_local["Offline Kibana Analysis"]
+                elastic_local["Elasticsearch"]
+                kibana_local["Kibana Dashboard"]
                 elastic_local --> kibana_local
             end
         end
@@ -59,9 +62,11 @@ flowchart LR
     metricbeat -->|system & container metrics| logstash
     logstash --> elastic
     elastic --> kibana
-    analyst["Sec Analyst"] --> |restricted ports|kibana
+    analyst["Analyst"] --> |restricted access|kibana
     elastic --> snapshot
-    rsync --> elastic_local
+    snapshot -->|secure rsync| snapshot_local
+    snapshot_local --> |restore| elastic_local
+    analyst --> |local access| kibana_local
 ```
 
 ## Design Rationale
