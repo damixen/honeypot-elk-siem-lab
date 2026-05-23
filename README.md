@@ -1,51 +1,23 @@
-# Security Monitoring & Detection with T-pot Honeypot Platform on Digital Ocean
-# Project Overview
-Deployed and operated a cloud-based T-Pot honeypot environment on DigitalOcean to capture real-world network activities and analyze the behavior. Built an end-to-end security monitoring pipeline using the ELK stack and Metricbeat to collect, process, and visualize security telemetry.
+# Security Monitoring & Detection Lab (T-Pot + ELK + Snapshot Forensics)
+Cloud-based honeypot telemetry pipeline for security monitoring, log analysis, and offline forensic investigation.
 
-This project simulates a lightweight SOC-style monitoring environment focused on log ingestion, activity observation, and behavioral analysis of internet-scale scanning and exploitation attempts.
+The system extends a baseline T-Pot deployment into a multi-environment architecture supporting:
 
+- live honeypot telemetry collection
+- infrastructure observability
+- isolated forensic analysis via snapshot restoration
 
-This is a live honeypot environment currently collecting security telemetry
+## System Overview
+This project operates a cloud-deployed honeypot environment using T-Pot on DigitalOcean, integrated with the ELK stack for centralized log ingestion and analysis.
 
+The original deployment was extended to support two operational planes:
 
-# Objectives
-- Build a hands-on SIEM environment using the ELK stack
-  - Log ingestion pipeline design
-  - Kibana-based security visualization
-- Deploy and operate a honeypot system for activity observation
-- Analyze activity behavior patterns including:
-  - Network scanning
-  - Brute-force authentication attempts
-  - Exploitation attempts
-- Develop analytical skills in:
-  - Log correlation
-  - Security monitoring
-  - Anomaly detection
+Production telemetry system: internet-facing honeypots generating real attack traffic data
+Investigation environment: locally restored Elasticsearch snapshots used for offline analysis and dashboard development
 
-# Report Framing and Terminology
-Some screenshots retain original T-Pot / Kibana labeling where “attack” is used as a generic field for observed network activity. In this report, these events are interpreted as “activity” (e.g., scans and probes) rather than confirmed malicious attacks or attribution of intent.
+This separation reduces risk to production telemetry while enabling unrestricted investigative workflows.
 
-# System Context (T-Pot Honeypot Platform)
-T-Pot is an open-source honeypot platform that supports the deployment and management of multiple honeypots. It's a Docker-based service that manages honeypots and also provides an ELK stack for log collection and visualization. It also supports attack maps and investigative tools such as CyberChef and SpiderFoot.
-
-Honeypots on T-Pot emulate various services with open ports, including HTTP, HTTPS, SSH, FTP, SMB, ADB, and Elasticsearch. The platform is highly customizable and supports selective deployment of honeypot services. Each honeypot generates logs for an activity event, which are collected by Logstash and ingested into Elasticsearch.
-
-For my projects, I extended the ELK stack to support Metricbeat to collect System and Docker resources for broader activity correlation. I utilize the existing Kibana visualizations (Dashboards and panels) provided by T-Pot, and I have also created my own visualizations for resource utilization and case study investigation.
-
-
-# Technologies Used
-- T-Pot
-- Docker
-- Kibana
-- Logstash
-- Metricbeat
-- DigitalOcean
-- Linux
-- Ansible
-- Networking/firewall
-
-
-# Architecture
+## Architecture (V2)
 ```mermaid  
 flowchart LR
     subgraph internal-service["Monitoring Stack"]
@@ -60,17 +32,27 @@ flowchart LR
     subgraph docker["Docker"]
         internal-service
         external-service
-       
     end
     subgraph ubuntu["Ubuntu"]
         docker
     end
-
-
     subgraph Cloud["Digital Ocean with Firewall"]
         ubuntu
     end
-
+     subgraph backup["Snapshot & Transfer"]
+        snapshot["Elasticsearch Snapshots"]
+        rsync["Rsync Transfer"]
+        snapshot --> rsync
+    end
+    subgraph local["Local Investigation Environment"]
+        subgraph ubuntu2["Ubuntu Host"]
+            subgraph docker2["Docker"]
+                elastic_local["Elasticsearch Restore"]
+                kibana_local["Offline Kibana Analysis"]
+                elastic_local --> kibana_local
+            end
+        end
+    end
 
     internet -->|public ports| hpots
     hpots -->|honeypot logs| logstash
@@ -78,30 +60,100 @@ flowchart LR
     logstash --> elastic
     elastic --> kibana
     analyst["Sec Analyst"] --> |restricted ports|kibana
+    elastic --> snapshot
+    rsync --> elastic_local
 ```
 
-# Data Flow
-- Internet traffic interacts with exposed honeypot services
-- Honeypots capture malicious interaction attempts and generate logs
-- Logstash aggregates and processes security events
-- Metricbeat collects system and container-level metrics
-- Elasticsearch stores normalized security data
-- Kibana provides visualization and analysis dashboards for investigation
-- Analysts interact with the Kibana through restricted access utilizing Digital Ocean filewall.
+## Design Rationale
 
-# Current Status
-- Honeypot environment is actively collecting live traffic
-- Logging pipeline is fully operational (ELK + Metricbeat)
-- Data collection phase in progress; initial exploratory analysis and detection design in progress
+### 1. Separation of Production and Analysis Workloads
 
+The system isolates live telemetry collection from investigative activity to prevent:
 
-# Planned analysis phase
-- Attack pattern analysis (scanning, brute force, exploitation attempts)
-- Kibana dashboard development for security visibility
-- MITRE ATT&CK mapping of observed behaviors
-- Detection rule creation for suspicious activity
+- accidental impact on production data integrity
+- performance degradation during analysis
+- unsafe experimentation on live indices
 
-# Acknowledgements
+### 2. Infrastructure Visibility Extension
+
+T-Pot provides application-level telemetry, but lacks host and container observability.
+
+Metricbeat was introduced to collect:
+
+- system resource utilization
+- Docker container metrics
+- infrastructure-level signals for correlation with attack activity
+
+### 3. Forensic Data Preservation Model
+
+Elasticsearch snapshots are used to:
+
+- preserve historical attack data
+- enable replayable investigation environments
+- decouple analysis from production constraints
+
+## Data Flow
+1. Internet traffic interacts with exposed honeypot services
+2. Honeypots generate telemetry from observed interactions
+3. Logstash aggregates and processes incoming logs
+4. Metricbeat collects host and Docker resource metrics
+5. Elasticsearch stores normalized telemetry and infrastructure data
+6. Kibana provides dashboards and investigative workflows
+7. Elasticsearch snapshots are periodically transferred to a local environment
+8. Local Elasticsearch restores enable safer offline analysis and historical investigations
+
+## Baseline System (T-Pot)
+T-Pot provides a pre-integrated honeypot environment with:
+
+- multiple emulated network services
+- ELK stack for log aggregation
+- prebuilt Kibana dashboards
+
+### Observed Limitations
+- Limited host/container-level observability by default
+- Tight coupling between honeypot and analytics stack
+- Production and analysis occur in the same environment
+- Additional access control and hardening required before exposing Kibana interfaces beyond restricted administrative access
+- Resource contention under higher traffic loads
+
+These constraints informed the V2 redesign.
+
+## Extended Capabilities (V1/V2)
+- Added Metricbeat for infrastructure telemetry
+- Introduced snapshot-based forensic workflow
+- Separated production and investigation environments
+- Enabled offline Kibana analysis for safer experimentation
+- Improved observability across system, container, and network layers
+
+![v2-architecture](architecture/diagrams/architecture-v2.drawio.svg)
+
+## Operational Focus Areas
+
+This environment is used to analyze:
+
+- network scanning patterns across exposed services
+- brute-force authentication attempts
+- exploitation attempts against simulated services
+- behavioral patterns of automated attack infrastructure
+
+## Current Status
+- Production honeypot environment operational and receiving live traffic
+- ELK ingestion pipeline stable
+- Metricbeat integrated and producing infrastructure telemetry
+- Snapshot → restore pipeline functional
+- Local investigation environment deployed
+- Detection engineering and dashboard development in progress
+
+## Engineering Takeaway
+
+This project demonstrates a progression from a baseline honeypot deployment into a structured security telemetry system with:
+
+- separation of production and analysis workflows
+- extended infrastructure observability
+- reproducible forensic investigation capability
+- SOC-aligned data flow and monitoring design
+
+## Acknowledgements
 This project utilizes T-Pot honeypot platform as the core honeypot framework for generating and capturing malicious traffic.
 
 Official project: https://github.com/telekom-security/tpotce
@@ -114,9 +166,13 @@ Platform: DigitalOcean (https://www.digitalocean.com/)
 
 ## Author
 
-Cybersecurity-focused engineer transitioning into SOC / Blue Team roles.  
-Focused on:
-- Threat detection engineering  
-- SIEM development (ELK stack)  
-- Incident response workflows  
-- Adversary simulation labs  
+Cybersecurity-focused engineer transitioning into SOC / Blue Team roles with prior experience in software engineering, cloud operations, and production systems support.
+
+Current focus areas:
+
+- Threat detection engineering
+- SIEM development (ELK stack)
+- Incident response workflows
+- Security monitoring
+- Honeypot telemetry analysis
+- Adversary simulation labs

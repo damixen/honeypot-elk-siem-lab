@@ -14,8 +14,8 @@ Based on the questions, my current hypotheses are:
 The start time range has now been adjusted to include the honeypot's inception.
 
 Range:
-Apr 29, 2026 @ 00:00:00.000
-May 8, 2026 @ 12:50:17.396
+- Apr 29, 2026 @ 00:00:00.000
+- May 8, 2026 @ 12:50:17.396
 
 The top IP is first seen on May 7th, 2026, which falls into the previous time range. So the spike observed from this IP was the first appearance of the IP address, which shows that there is no observation for the previous activity from this IP.
 ![[2026-05-18_08-46-33-topip-first-appearance.png]](screenshots/2026-05-18_08-46-33-topip-first-appearance.png)
