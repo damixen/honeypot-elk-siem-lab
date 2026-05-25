@@ -19,16 +19,16 @@ The objective of this investigation was to determine whether the observed traffi
 T-Pot honeypot logs from May 2nd, 2026 to May 14th, 2026
 
 ## Phases
-- [Phase 1 - Initial Detection & Triage](01-initial-detection-and-triage/README.md)
-- [Phase 2 - Traffic Characterization](02-traffic-characterization/README.md)
-- [Phase 3 - Historical Correlation](03-historical-correlation/README.md)
-- [Phase 4 - Thread Enrichment](04-threat-enrichment/README.md)
-- [Phase 5 - Conclusions](05-conclusions/README.md)
-- [Phase 6 - Detection Recommendations](06-detection-recommendations/README.md)
+- [Phase 1 - Initial Detection & Triage](phase1/README.md)
+- [Phase 2 - Traffic Characterization](phase2/README.md)
+- [Phase 3 - Historical Correlation](phase3/README.md)
+- [Phase 4 - Thread Enrichment](phase4/README.md)
+- [Phase 5 - Conclusions](phase5/README.md)
+- [Phase 6 - Detection Recommendations](phase6/README.md)
 
 ## Screenshots
-![sc1](01-initial-detection-and-triage/screenshots/init-range.png)
-![sc2](02-traffic-characterization/screenshots/activity-port-stats.png)
+![sc1](phase1/screenshots/init-range.png)
+![sc2](phase2/screenshots/activity-port-stats.png)
 
 ## Skills Demonstrated
 - ELK Stack
