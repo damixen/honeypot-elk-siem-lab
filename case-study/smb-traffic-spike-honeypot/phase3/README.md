@@ -1,4 +1,4 @@
-## Historical Correlation
+# Historical Correlation
 
 My objectives for this historical correlation are to find evidence for the following questions:
 - Do I see past activities from the dominant IP address?
@@ -76,7 +76,7 @@ And interestingly, Censys, Inc is in the list of ASNs, which is an internet-wide
 Additionally, I searched Shodan.io activities, and there are some, but they're on port 80.
 ![[2026-05-18_11-04-00-shodan.png]](screenshots/2026-05-18_11-04-00-shodan.png)
 I did not perform a further query on Shodan.io.
-### Current Assessment
+## Current Assessment
 Historical correlation did not identify evidence of broad reconnaissance behavior from the dominant source IP or associated ASN activity. The findings suggest the SMB targeting may have originated from public Internet indexing visibility or from targeted SMB reconnaissance against cloud-hosted infrastructure.
 
 Key indicators include:
@@ -84,11 +84,11 @@ Key indicators include:
 - Multi-port scanning observed from various IP addresses.
 - Observed access from the internet indexing platforms such as Censys.
 
-### Additional Observations
+## Additional Observations
 - Observed Digital Ocean provider scan activities, which correlated with the receipt of a potential port abuse reporting email from the Digital Ocean support team. This observation also provided visibility into the cloud provider’s exposure monitoring and security notification process.
 - Mass-scanning and indexing-related activity was observed within hours of the honeypot deployment, highlighting how quickly newly exposed cloud infrastructure becomes visible to automated Internet-wide scanning ecosystems. 
 
-### Investigation Limitations
+## Investigation Limitations
 
 - While reviewing traffic from the DigitalOcean scanner, I realized that the current investigation primarily focused on honeypot activity events rather than on all observed network activity. Lightweight scanning activity detected at the network layer by Suricata may not generate corresponding honeypot interaction logs, particularly for incomplete or low-interaction connection attempts.
 
@@ -100,6 +100,5 @@ Key indicators include:
 
 Further investigation will focus on threat enrichment and protocol-level analysis.
 
-
-
-
+[<< Phase 2](../phase2/README.md)
+ | **Phase 3** | [Phase 4 >>](../phase4/README.md)

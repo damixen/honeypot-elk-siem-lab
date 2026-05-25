@@ -1,4 +1,4 @@
-## Traffic Characterization
+# Traffic Characterization
 
 Looking at the countries where those activities originated, Vietnam was associated with the most spikes observed. So, I set the filter for Vietnam.
 ![activity-vn](./screenshots/activity-vn.png)
@@ -41,7 +41,7 @@ Key indicators include:
 
 At this stage, successful exploitation cannot be confirmed, and additional historical correlation and protocol-level analysis are required.
 
-### Investigation Limitations
+## Investigation Limitations
 
 The current investigation is limited to telemetry collected by the honeypot platform and associated ELK visualizations.
 
@@ -53,3 +53,6 @@ The following limitations apply:
 - Attribution beyond ASN-level correlation remains inconclusive
 
 Further investigation will focus on historical behavior correlation and protocol-level analysis.
+
+[<< Phase 1](../phase1/README.md)
+ | **Phase 2** | [Phase 3 >>](../phase3/README.md)
