@@ -74,13 +74,17 @@ So if I focus on the US, the funnel shows more resource accesses.
 
 ## Observed SMB Session Flow
 ```mermaid
-flowchart
-
+flowchart LR
 subgraph Observed Honeypot Flow
+direction LR
 B1[NEGOTIATE] --> B2[SESSION_SETUP_ANDX] --> B3[TREE_CONNECT_ANDX] --> B4[STOP - No further activity]
 end
+```
 
+```mermaid
+flowchart LR
 subgraph Expected Full SMB Flow
+direction LR
 A1[NEGOTIATE] --> A2[SESSION_SETUP] --> A3[TREE_CONNECT] --> A4[NT_CREATE] --> A5[READ/WRITE]
 end
 ```
