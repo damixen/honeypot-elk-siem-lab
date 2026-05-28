@@ -23,8 +23,8 @@ T-Pot honeypot logs from May 2nd, 2026 to May 14th, 2026
 - [Phase 2 - Traffic Characterization](phase2/README.md)
 - [Phase 3 - Historical Correlation](phase3/README.md)
 - [Phase 4 - Thread Enrichment](phase4/README.md)
-- [Phase 5 - Conclusions](phase5/README.md)
-- [Phase 6 - Detection Recommendations](phase6/README.md)
+- [Phase 5 - Detection Recommendations](phase5/README.md)
+- [Phase 6 - Conclusions](phase6/README.md)
 
 ## Screenshots
 ![sc1](phase1/screenshots/init-range.png)
