@@ -2,7 +2,7 @@
 ## From Spike Detection to Behavioral Correlation: Investigating Concentrated SMB Activity
 
 ### Investigation Status
-Phase 3 Complete — Ongoing Investigation
+Phase 4 Complete — Ongoing Investigation
 
 ## Summary
 This is a case report investigating a spike in activities against the T-Pot honeypot on a cloud platform. This investigation began by selecting anomalous activity from honeypot telemetry to explore how the SOC/detection/threat hunting workflow operate in practice. This investigation will be expanded in future phases.
