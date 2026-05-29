@@ -148,6 +148,16 @@ Confidence is based on repeated SMB negotiation behavior, session setup patterns
 - https://www.youtube.com/watch?v=nxql9d5VtmA
 - https://www.varonis.com/blog/smb-port
 
+# Adddendum - Interpretation Update
+## SESSION SETUP command status
+Further investigation of the dominant IP revealed that the majority of SMB1_COMMAND_SESSION_SETUP_ANDX events remain at STATUS_MORE_PROCESSING_REQUIRED, with only 24 events resulting in STATUS_SUCCESS out of approximately 25,000 observed events. Additionally, I observed that SESSION_SETUP events consistently appeared as part of a sequential negotiation flow following SMB protocol negotiation, rather than as isolated requests.
+
+In SMB1 with NTLMSSP authentication, STATUS_MORE_PROCESSING_REQUIRED typically indicates that the NTLM challenge-response exchange is still in progress, rather than a completed authentication. This aligns with observed NTLMSSP payload exchanges during session setup.
+Further analysis of Dionaea's behavior indicates that the honeypot does not perform full authentication validation. Instead, it simulates SMB session establishment by accepting NTLMSSP authentication structures without verifying credentials against a backend authentication system. As a result, session establishment may succeed regardless of credential correctness.
+
+Based on these observations, the low number of STATUS_SUCCESS events suggests that most SESSION_SETUP exchanges remained within the SMB session establishment (NTLMSSP negotiation) phase, without progressing into post-session SMB operations such as share access or file interaction.
+This does not materially change the overall assessment of the traffic as automated SMB interaction, but it refines the interpretation of SESSION_SETUP status values and clarifies that they reflect protocol-level negotiation states rather than authentication success or failure.
+
 
 [<< Phase 3](../phase3/README.md)
  | **Phase 4** | [Phase 5 >>](../phase5/README.md)
