@@ -76,13 +76,6 @@ And interestingly, Censys, Inc is in the list of ASNs, which is an internet-wide
 Additionally, I searched Shodan.io activities, and there are some, but they're on port 80.
 ![[2026-05-18_11-04-00-shodan.png]](screenshots/2026-05-18_11-04-00-shodan.png)
 I did not perform a further query on Shodan.io.
-## Current Assessment
-Historical correlation did not identify evidence of broad reconnaissance behavior from the dominant source IP or associated ASN activity. The findings suggest the SMB targeting may have originated from public Internet indexing visibility or from targeted SMB reconnaissance against cloud-hosted infrastructure.
-
-Key indicators include:
-- Heavy concentration toward port 445 from other IPs on the associated ASN and Vietnam.
-- Multi-port scanning observed from various IP addresses.
-- Observed access from the internet indexing platforms such as Censys.
 
 ## Timeline
 ```mermaid  
@@ -98,6 +91,14 @@ timeline
       May 7th : Dominant source IP first observed
       May 8th : First confirmed Shodan.io indexing of honeypot (OSINT exposure)
 ```
+
+## Current Assessment
+Historical correlation did not identify evidence of broad reconnaissance behavior from the dominant source IP or associated ASN activity. The findings suggest the SMB targeting may have originated from public Internet indexing visibility or from targeted SMB reconnaissance against cloud-hosted infrastructure.
+
+Key indicators include:
+- Heavy concentration toward port 445 from other IPs on the associated ASN and Vietnam.
+- Multi-port scanning observed from various IP addresses.
+- Observed access from the internet indexing platforms such as Censys.
 
 ## Additional Observations
 - Observed Digital Ocean provider scan activities, which correlated with the receipt of a potential port abuse reporting email from the Digital Ocean support team. This observation also provided visibility into the cloud provider’s exposure monitoring and security notification process.
