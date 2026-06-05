@@ -84,6 +84,21 @@ Key indicators include:
 - Multi-port scanning observed from various IP addresses.
 - Observed access from the internet indexing platforms such as Censys.
 
+## Timeline
+```mermaid  
+timeline
+  title Honeypot Activity & Exposure Timeline
+      Apr 29th : HoneyPot launch (internal event)
+      Apr 29th : Mass scan activity detected (multi-source external scans)
+      Apr 29th : DigitalOcean-origin scan traffic (cloud ASN activity)
+      Apr 30th : Dominant source ASN first observed
+      Apr 30th : Secondary ISP activity detected (Vietnam region traffic)
+      Apr 30th : Shodan HTTP crawler activity observed (HTTP/80 only)
+      May 1st : Exposed port notificaiton (DigialOcean support email)
+      May 7th : Dominant source IP first observed
+      May 8th : First confirmed Shodan.io indexing of honeypot (OSINT exposure)
+```
+
 ## Additional Observations
 - Observed Digital Ocean provider scan activities, which correlated with the receipt of a potential port abuse reporting email from the Digital Ocean support team. This observation also provided visibility into the cloud provider’s exposure monitoring and security notification process.
 - Mass-scanning and indexing-related activity was observed within hours of the honeypot deployment, highlighting how quickly newly exposed cloud infrastructure becomes visible to automated Internet-wide scanning ecosystems. 
