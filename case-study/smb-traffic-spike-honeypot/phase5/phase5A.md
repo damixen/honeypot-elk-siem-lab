@@ -52,7 +52,8 @@ smb.command : *NEGOTIATE*
 - 30-day historical window (May 1, 2026 to May 31, 2026)
 - derive normal range
 
-![[2026-06-08_12-07-09-smb-command-12h-may1-may31.png]]
+![[2026-06-08_12-07-09-smb-command-12h-may1-may31.png]](screenshots/2026-06-08_12-07-09-smb-command-12h-may1-may31.png)
+
 [Sample Data](https://docs.google.com/spreadsheets/d/1FROuzUkboBWsIbwY7sOfHFN4HsSFqGrAq1lPY1AWLoU/edit?usp=sharing)
 
 Segmentation boundaries were derived from the observed data distribution, taking into account how SMB sessions manifest in the honeypot environment.
