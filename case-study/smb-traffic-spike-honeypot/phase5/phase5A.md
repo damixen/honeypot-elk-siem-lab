@@ -217,5 +217,5 @@ This server, being the honeypot, was considered. In a honeypot environment, it's
 - Consider other SMB commands and behavior for the threshold-based rule.
 - Validate the rules against live telemetry to evaluate alert fidelity and operational usefulness.
 
-
-
+[<< Phase 5](./README.md)
+ | **Phase 5A** | [Phase 5B >>](./phase5B.md)

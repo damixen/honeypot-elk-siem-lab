@@ -13,7 +13,7 @@ Narrowing the range revealed several spikes across multiple countries. The activ
 
 The first observation is that these spikes suggest an automated system repeatedly scanning or attempting to access the exposed services.
 
-###About port 445
+### About port 445
 Port 445 is used for the Server Message Block protocol. SMB is a network file-sharing protocol commonly used for sharing files, printers and remote resource communication in Windows environments. 
 
 SMB has been exploited over the last decade, and the most famous attack was the 2017 WannaCry ransomware attack, which affected more than 300K computers in 150 countries. 
