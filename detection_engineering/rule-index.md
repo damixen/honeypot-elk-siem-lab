@@ -8,7 +8,7 @@ This document provides an index of detection rules developed across case studies
 
 ### SMB Negotiate Command - 12h Volume Threshold Exceeded
 - **Type:** Volume-based detection
-- **Behavior:** Excessive SMB negotiation activity over extended window
+- **Behavior:** Excessive SMB negotiation activity over an extended window
 - **Case Study Reference:**
   - Phase 5A → [Detection Rule 1](../case-study/smb-traffic-spike-honeypot/phase5/phase5A.md#rule-1-smb-negotiate-command---12h-volume-threshold-exceeded)
 
