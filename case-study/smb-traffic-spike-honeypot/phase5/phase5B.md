@@ -125,6 +125,8 @@ event_type.keyword : "smb"
 ## Detection Rule Creation
 While session-level indices would provide a more robust foundation for these detections, meaningful behavioral coverage can still be achieved through event-level thresholding informed by session analysis. Share Interaction, in terms of event/command counts (not session count), is less than 1% of the total SMB counts for May 2026, so it's a much lower number than other interactions, so it's likely that such an interaction may not be detected with session rate and volume-based detection.
 
+## SMB Share Interact Command - 30-min Volume Threshold Exceeded
+
 ### Rule Creation Model
 
 #### 1. Define Behavior

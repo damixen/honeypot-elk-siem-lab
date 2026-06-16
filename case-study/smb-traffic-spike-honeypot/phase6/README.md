@@ -14,9 +14,9 @@ I did not observe evidence suggesting coordinated behaviors between the dominant
 Confidence in these conclusions is supported by consistent observations across multiple analytical approaches, including volumetric analysis, session-level behavioral analysis, and validation through detection development activities. However, limitations in protocol emulation, incomplete visibility into certain SMB command payloads (such as NT_TRANS), and the absence of broader internet-wide telemetry prevent assigning a higher level of confidence.
 
 ## Detection Conclusions
-Volumetric detections provided broad coverage.
-Session-oriented detections improved interpretability.
-Behavioral thresholds required an environmental context.
+- Volumetric detections provided broad coverage.
+- Session-oriented detections improved interpretability.
+- Behavioral thresholds required an environmental context.
 
 This dominant activity showed that multiple layers of detection provide broad coverage and complement each other. The activity was detected by the volumetric detection rule for long-term behavior (12h), but not by the short-term (5min) behavior. This observation highlighted the value of layered detection, in which different detection strategies provide coverage across varying temporal scales and behavioral characteristics.
 
