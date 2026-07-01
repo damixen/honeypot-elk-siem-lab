@@ -2,7 +2,8 @@ internal_investigation
 internal_notes
 raw_screenshots
 .obsidian
-*.drawio*
+*.drawio
+*.bkp
 *_raw
 *.base
 *.canvas
